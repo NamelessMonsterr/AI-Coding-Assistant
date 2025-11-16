@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColort](https://img.shields.io/badge/TypeScript-5.3+-3178C6?style=tAPI](https://img.shields.io/badge/FastAPI-0.109-009688?style=for-the-badge&logo=fastapi&logos://img.shields.io/badge/VS_Code-Extension-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white AI coding assistant with multi-LLM support and intelligent file operations**
+=white AI coding assistant with multi-LLM support and intelligent file operations
 
 [Features](#-features) -  [Demo](#-demo) -  [Installation](#-quick-start) -  [Documentation](#-documentation) -  [API](#-api-reference)
 
