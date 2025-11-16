@@ -2,7 +2,7 @@
 
 <div align="center">
 
-=white AI coding assistant with multi-LLM support and intelligent file operations
+AI coding assistant with multi-LLM support and intelligent file operations
 
 [Features](#-features) -  [Demo](#-demo) -  [Installation](#-quick-start) -  [Documentation](#-documentation) -  [API](#-api-reference)
 
