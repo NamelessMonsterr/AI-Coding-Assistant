@@ -1,0 +1,238 @@
+{
+  "name": "unified-ai-coding-assistant",
+  "displayName": "Unified AI Coding Assistant",
+  "description": "Multi-agent AI coding assistant powered by Claude Sonnet 4.5, OpenAI GPT-4, and Google Gemini",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Machine Learning",
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "code-generation",
+    "code-review",
+    "claude",
+    "gpt-4",
+    "gemini",
+    "assistant"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "unified-ai-assistant",
+          "title": "AI Assistant",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "unified-ai-assistant": [
+        {
+          "type": "webview",
+          "id": "unified-ai.chatView",
+          "name": "AI Chat",
+          "icon": "$(comment-discussion)"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "unified-ai.openChat",
+        "title": "Open AI Chat",
+        "category": "AI Assistant",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "unified-ai.clearChat",
+        "title": "Clear Chat History",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "unified-ai.generateCode",
+        "title": "Generate Code",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "unified-ai.reviewCode",
+        "title": "Review Code",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "unified-ai.explainCode",
+        "title": "Explain Code",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "unified-ai.refactorCode",
+        "title": "Refactor Code",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "unified-ai.designArchitecture",
+        "title": "Design Architecture",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "unified-ai.analyzeRepository",
+        "title": "Analyze Repository",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "unified-ai.selectModel",
+        "title": "Select AI Model",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "unified-ai.codesOpened",
+        "title": "Show Opened Files",
+        "category": "AI Assistant"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "unified-ai.generateCode",
+        "key": "ctrl+shift+g",
+        "mac": "cmd+shift+g"
+      },
+      {
+        "command": "unified-ai.reviewCode",
+        "key": "ctrl+shift+r",
+        "mac": "cmd+shift+r"
+      },
+      {
+        "command": "unified-ai.explainCode",
+        "key": "ctrl+shift+e",
+        "mac": "cmd+shift+e"
+      },
+      {
+        "command": "unified-ai.codesOpened",
+        "key": "ctrl+shift+o",
+        "mac": "cmd+shift+o"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "unified-ai.clearChat",
+          "when": "view == unified-ai.chatView",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "unified-ai.generateCode",
+          "group": "ai-assistant@1",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "unified-ai.reviewCode",
+          "group": "ai-assistant@2",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "unified-ai.explainCode",
+          "group": "ai-assistant@3",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "unified-ai.refactorCode",
+          "group": "ai-assistant@4",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "unified-ai.codesOpened",
+          "group": "ai-assistant@5"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Unified AI Coding Assistant",
+      "properties": {
+        "unified-ai.apiUrl": {
+          "type": "string",
+          "default": "http://localhost:8000",
+          "description": "Backend API URL"
+        },
+        "unified-ai.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Optional API key for authentication"
+        },
+        "unified-ai.defaultModel": {
+          "type": "string",
+          "default": "claude",
+          "enum": ["claude", "openai", "gemini", "auto"],
+          "description": "Default AI model to use"
+        },
+        "unified-ai.temperature": {
+          "type": "number",
+          "default": 0.2,
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Temperature for code generation"
+        },
+        "unified-ai.maxTokens": {
+          "type": "number",
+          "default": 4096,
+          "minimum": 100,
+          "maximum": 8000,
+          "description": "Maximum tokens for responses"
+        },
+        "unified-ai.enableStreaming": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable streaming for real-time responses"
+        },
+        "unified-ai.enableCache": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable caching for faster responses"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/unified-ai-coding-assistant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/unified-ai-coding-assistant/issues"
+  },
+  "homepage": "https://github.com/yourusername/unified-ai-coding-assistant#readme",
+  "license": "MIT"
+}
