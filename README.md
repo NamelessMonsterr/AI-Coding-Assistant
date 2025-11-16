@@ -1,4 +1,4 @@
-# Unified AI Coding Assistant
+# AI Coding Assistant
 
 Multi-agent AI coding assistant powered by Claude Sonnet 4.5, OpenAI GPT-4, Google Gemini, and Hugging Face models.
 
